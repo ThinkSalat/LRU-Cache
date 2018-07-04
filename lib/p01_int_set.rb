@@ -36,12 +36,15 @@ class IntSet
   end
 
   def insert(num)
+    self[num] << num
   end
 
   def remove(num)
+    self[num].delete(num)
   end
 
   def include?(num)
+    self[num].include?(num)
   end
 
   private
@@ -65,6 +68,9 @@ class ResizingIntSet
   end
 
   def insert(num)
+    self[num] << num
+    @count += 1
+    resize! if num_buckets < count
   end
 
   def remove(num)
